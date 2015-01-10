@@ -24,17 +24,16 @@ Pod::Spec.new do |s|
   s.requires_arc     = true
 
   s.source_files     = 'Pod/*.{h,m}'
-  s.resource_bundles = { 'TresorLibrary' => ['Pod/Assets/*.png'] }
-
-  s.prefix_header_contents = '#import "Macros.h"','#import "TresorError.h"'
-
+  s.resource_bundle  = { 'TresorLibrary' => ['Pod/*.lproj'] }
+ 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 
   s.subspec 'Crypto' do |ss|
-    ss.xcconfig            = { 'OTHER_CFLAGS' => '-DUSE_SHA1' }
-    ss.source_files        = 'Pod/Crypto'
+    ss.xcconfig     = { 'OTHER_CFLAGS' => '-DUSE_SHA1' }
+    ss.source_files = 'Pod/Crypto'
+    ss.dependency   'SSKeychain'
   end
 
   s.subspec 'Dao' do |ss|
